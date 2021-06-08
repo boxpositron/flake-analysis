@@ -1,26 +1,46 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <main>
+    <navbar nav />
+    <router-view view />
+    <page-footer footer />
+  </main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  import Navbar from '@/components/navigation/Navbar'
+  import PageFooter from '@/components/navigation/PageFooter'
+  export default {
+    name: 'App',
+    components: {
+      Navbar,
+      PageFooter
+    }
   }
-}
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped lang="scss">
+  main {
+    display: grid;
+    grid-template-areas: 'navigation' 'view' 'footer';
+    grid-template-columns: auto;
+    grid-template-rows: max-content auto max-content;
+    min-height: 100vh;
+
+    [nav] {
+      grid-area: navigation;
+    }
+
+    [view] {
+      margin: 50px 0;
+      grid-area: view;
+    }
+
+    [footer] {
+      grid-area: footer;
+    }
+  }
+</style>
+
+<style lang="scss">
+  @import './assets/scss/default.scss';
 </style>
