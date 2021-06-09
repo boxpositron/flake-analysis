@@ -71,9 +71,7 @@
 <style lang="scss" scoped>
   div.timestamp-preview {
     max-width: 500px;
-    padding: 20px 0;
     width: 100%;
-    border-radius: 10px;
 
     ul.zones {
       -webkit-padding-start: 0;
@@ -90,6 +88,14 @@
         font-size: 1.1rem;
         line-height: 50px;
         border-left: 5px solid #212121;
+
+        opacity: 0.8;
+
+        transition: opacity 200ms linear;
+
+        &:hover {
+          opacity: 1;
+        }
 
         &.gmt {
           &::before {
