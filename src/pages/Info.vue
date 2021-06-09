@@ -47,7 +47,11 @@
       )
 
       const feedback = computed(() => {
-        if (snowflake.value.length && !isBigInt.value) {
+        if (!snowflake.value.length) {
+          return ''
+        }
+
+        if (!isBigInt.value) {
           return 'Invalid snowflake'
         }
 
@@ -96,8 +100,8 @@
       span.feedback {
         display: block;
         font-size: 1rem;
-        padding: 20px 0;
-        height: 50px;
+        line-height: 50px;
+        min-height: 50px;
         font-weight: 500;
       }
     }
