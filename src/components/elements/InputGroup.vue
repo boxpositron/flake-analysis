@@ -10,6 +10,9 @@
       :placeholder="placeholder"
       v-model="message"
     />
+    <span class="feedback">
+      {{ feedback }}
+    </span>
   </div>
 </template>
 
@@ -22,6 +25,14 @@
       name: {
         type: String,
         default: ''
+      },
+      feedback: {
+        type: String,
+        default: ''
+      },
+      highlight: {
+        type: Boolean,
+        default: false
       },
       modelValue: {
         type: String,
@@ -53,6 +64,7 @@
       const inputClass = computed({
         get: () => ({
           'input-group': true,
+          highlight: props.highlight,
           invalid: props.invalid
         })
       })
@@ -79,21 +91,36 @@
       }
     }
 
+    &.highlight {
+      input {
+        background-color: #c7f2a7;
+      }
+    }
+
     input {
       height: 80px;
       max-width: 460px;
       width: 100%;
       border: none;
-      font-family: 'Source Code Pro', monospace;
       outline: none;
       font-size: 1.5rem;
       padding: 0 20px;
       color: #212121;
       background-color: #ffffff;
+      font-family: 'Source Code Pro', monospace;
 
       &::placeholder {
         color: #757575;
       }
+    }
+
+    span.feedback {
+      display: block;
+      font-size: 1rem;
+      line-height: 50px;
+      min-height: 50px;
+      font-weight: 500;
+      color: #212121;
     }
   }
 </style>
