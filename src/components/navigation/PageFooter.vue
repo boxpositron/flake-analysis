@@ -36,7 +36,6 @@
     grid-template-areas: '. links .' '. copyright .';
     grid-template-columns: minmax(auto, 200px) auto minmax(auto, 200px);
     grid-auto-rows: max-content;
-    font-family: 'Source Code Pro', monospace;
 
     div.links {
       grid-area: links;

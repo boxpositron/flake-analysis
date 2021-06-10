@@ -31,7 +31,6 @@
       max-content
       minmax(auto, 200px);
     grid-auto-rows: auto;
-    font-family: 'Source Code Pro', monospace;
 
     div.brand {
       grid-area: brand;
