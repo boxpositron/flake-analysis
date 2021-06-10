@@ -22,38 +22,40 @@
       }
     },
     setup(props) {
+      const timeformat = 'DD/MM/YYYY hh:mm:ss A Z'
+
       const localtime = computed(() =>
-        moment(props.timestamp).format('DD/MM/YYYY HH:mm:ss A Z')
+        moment(props.timestamp).format(timeformat)
       )
 
       const gmtTime = computed(() =>
         moment(props.timestamp)
           .tz('GMT')
-          .format('DD/MM/YYYY HH:mm:ss A Z')
+          .format(timeformat)
       )
 
       const utcTime = computed(() =>
         moment(props.timestamp)
           .tz('UTC')
-          .format('DD/MM/YYYY HH:mm:ss A Z')
+          .format(timeformat)
       )
 
       const estTime = computed(() =>
         moment(props.timestamp)
           .tz('EST')
-          .format('DD/MM/YYYY HH:mm:ss A Z')
+          .format(timeformat)
       )
 
       const watTime = computed(() =>
         moment(props.timestamp)
           .tz('GMT+1')
-          .format('DD/MM/YYYY HH:mm:ss A Z')
+          .format(timeformat)
       )
 
       const pdtTime = computed(() =>
         moment(props.timestamp)
           .tz('America/Los_Angeles')
-          .format('DD/MM/YYYY HH:mm:ss A Z')
+          .format(timeformat)
       )
 
       return {
@@ -83,7 +85,6 @@
         color: #fff;
         font-weight: 600;
         background-color: #119da4;
-        font-family: 'Source Code Pro', monospace;
         margin: 5px 0;
         font-size: 1.1rem;
         line-height: 50px;
