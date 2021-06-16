@@ -1,7 +1,9 @@
 <template>
   <div class="delta-page">
     <div class="information">
-      Snowflake comparison
+      <span class="title">
+        Snowflake comparison
+      </span>
     </div>
     <div class="details">
       <input-group
@@ -40,6 +42,7 @@
 
 <script>
   import { computed } from 'vue'
+  import { useRoute } from 'vue-router'
   import snowman from '@/composables/snowflake-conversion'
   import debounceRef from '@/composables/debounced-ref'
 
@@ -53,8 +56,14 @@
       TimestampDelta
     },
     setup() {
+      const route = useRoute()
+
       const snowflakeA = debounceRef('', 500)
       const snowflakeB = debounceRef('', 500)
+
+      if (route.query.snowflakea) {
+        snowflakeA.value = route.query.snowflakea
+      }
 
       const snowA = snowman(snowflakeA)
       const snowB = snowman(snowflakeB)
@@ -78,12 +87,13 @@
 <style lang="scss" scoped>
   div.delta-page {
     display: grid;
-    grid-template-areas: '. information . .' '. details results .';
+    grid-template-areas: '. information . . .' '. details . results .';
     grid-auto-rows: max-content;
     grid-template-columns:
       minmax(auto, 200px)
       max-content
-      auto
+      50px
+      max-content
       minmax(auto, 200px);
 
     div.information {
