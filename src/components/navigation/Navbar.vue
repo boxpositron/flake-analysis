@@ -2,7 +2,9 @@
   <nav>
     <div class="brand">
       <div class="brand-text">
-        Flake Analysis
+        <router-link to="/">
+          Flake Analysis
+        </router-link>
       </div>
     </div>
     <div class="links">
@@ -36,9 +38,12 @@
       grid-area: brand;
 
       div.brand-text {
-        color: #fff;
-        font-weight: 600;
-        line-height: 50px;
+        a {
+          color: #fff;
+          font-weight: 600;
+          line-height: 50px;
+          text-decoration: none;
+        }
       }
     }
 
