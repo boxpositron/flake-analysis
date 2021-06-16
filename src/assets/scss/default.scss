@@ -6,6 +6,12 @@ body {
   scroll-behavior: smooth;
   margin: 0;
   padding: 0;
-  font-family: 'Source Code Pro', monospace;
 
+  * {
+    font-family: 'Source Code Pro', monospace;
+  }
+
+  span.title {
+    font-size: 1.2rem;
+  }
 }
