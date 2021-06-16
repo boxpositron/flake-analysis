@@ -9,8 +9,10 @@
         placeholder="851774321701683200"
         :invalid="!isBigInt"
         :feedback="feedback"
+        @trigger="prefillCompare"
+        buttonlabel="Compare"
       >
-        Discord Snowflake
+        Snowflake
       </input-group>
     </div>
     <div class="results">
@@ -21,6 +23,7 @@
 
 <script>
   import { toRefs } from 'vue'
+  import { useRouter, useRoute } from 'vue-router'
   import debouncedRef from '@/composables/debounced-ref'
   import snowman from '@/composables/snowflake-conversion'
 
@@ -34,12 +37,26 @@
       TimestampPreview
     },
     setup() {
+      const router = useRouter()
+      const route = useRoute()
+
       const snowflake = debouncedRef('', 500)
 
       const snow = snowman(snowflake)
+
+      const prefillCompare = (value) =>
+        router.push({
+          name: 'delta',
+          query: {
+            snowflakea: value,
+            ...route.query
+          }
+        })
+
       return {
         ...toRefs(snow),
-        snowflake
+        snowflake,
+        prefillCompare
       }
     }
   }
@@ -54,10 +71,6 @@
 
     div.information {
       grid-area: information;
-
-      span.title {
-        font-size: 1.2rem;
-      }
     }
 
     div.details {
