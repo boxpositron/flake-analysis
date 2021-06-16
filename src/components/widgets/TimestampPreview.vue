@@ -12,8 +12,9 @@
 </template>
 
 <script>
-  import { computed } from 'vue'
-  import moment from 'moment-timezone'
+  import { toRefs } from 'vue'
+  import timestamp from '@/composables/timestamp-breakdown'
+
   export default {
     name: 'timestamp-preview',
     props: {
@@ -22,49 +23,9 @@
       }
     },
     setup(props) {
-      const timeformat = 'DD/MM/YYYY hh:mm:ss A Z'
-
-      const localtime = computed(() =>
-        moment(props.timestamp).format(timeformat)
-      )
-
-      const gmtTime = computed(() =>
-        moment(props.timestamp)
-          .tz('GMT')
-          .format(timeformat)
-      )
-
-      const utcTime = computed(() =>
-        moment(props.timestamp)
-          .tz('UTC')
-          .format(timeformat)
-      )
-
-      const estTime = computed(() =>
-        moment(props.timestamp)
-          .tz('EST')
-          .format(timeformat)
-      )
-
-      const watTime = computed(() =>
-        moment(props.timestamp)
-          .tz('GMT+1')
-          .format(timeformat)
-      )
-
-      const pdtTime = computed(() =>
-        moment(props.timestamp)
-          .tz('America/Los_Angeles')
-          .format(timeformat)
-      )
-
+      const timelist = timestamp(props.timestamp)
       return {
-        localtime,
-        watTime,
-        pdtTime,
-        gmtTime,
-        utcTime,
-        estTime
+        ...toRefs(timelist)
       }
     }
   }
@@ -84,18 +45,16 @@
       li {
         color: #fff;
         font-weight: 600;
-        background-color: #119da4;
         margin: 5px 0;
         font-size: 1.1rem;
         line-height: 50px;
         border-left: 5px solid #212121;
 
-        opacity: 0.8;
-
-        transition: opacity 200ms linear;
+        background-color: rgba($color: #119da4, $alpha: 0.8);
+        transition: background-color 200ms linear;
 
         &:hover {
-          opacity: 1;
+          background-color: #119da4;
         }
 
         &.gmt {
@@ -129,7 +88,7 @@
         }
 
         &.locale {
-          background-color: #8980f5;
+          background-color: #212121;
 
           &::before {
             content: '///';
